@@ -1,0 +1,43 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(53, 53, 147);
+    color: rgb(250, 229, 204);
+}
+
+/* #topics-buttons {
+} */
+
+img {
+    width: 200px;
+}
+
+#sharkgif {
+    width: 375px;
+}
+
+form {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5%;
+    line-height: 1.5;
+}
+
+input {
+    height: 18px;
+    width: 200px;
+
+}
+
+button {
+    border-radius: 50%;
+}
+
+button:hover {
+    opacity: .5;
+}
+
+#returns {
+    width: 100%;
+    margin: 5%;
+}
+
