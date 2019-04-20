@@ -1,46 +1,77 @@
-//when search button is clicked
-$("button").on("click", function(){
-    // create a variable that will return searches to div "returns"
-    var sharkMovie = $(this).attr("data-movie");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        sharkMovie + "&api_key=7ALjpcA6joYJ1fRr976NxxNcLduZEWK2&limit=10";  //// the page should grab 10 gifs
-    console.log('on click ', sharkMovie);
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response){
-        console.log(response);
-        console.log('response on click ', sharkMovie);
+$(document).ready(function(){
 
-        //create a variable to hold STILL images
-        var imageResults = response.data;
+    //empty array to hold search requests
+    var newSearch = [];
 
-        //iterate through each resulting image
-        for (var i = 0; i < imageResults.length; i++) {
-            
-            //create a div to hold each image and rating to be place in div 'id="returns"'
-            var gifDiv = $("<div id='returns'>");
+    // 1. Displays the ten giphs for the default buttons on HTML
+    function defaultButtons(){
+        var sharkMovie = $(this).attr("data-movie");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            sharkMovie + "&api_key=7ALjpcA6joYJ1fRr976NxxNcLduZEWK2&limit=10";
+        console.log(this);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response){
+            console.log(response.data);
 
-            // grab ratings
-            var rating = imageResults[i].rating;
-            //create p tag to hold rating
-            var ratingP = $("<p>").text("Rating: " + rating);
-            console.log(ratingP);
+            var imageResults = response.data;
 
-            //create an image holder for still div
-            var stillGiph = $("<img>");
-            //define stillGiph variable with a src attribute and link still div
-            stillGiph.attr("src", imageResults[i].images.fixed_width_still.url);
+            for (var i=0; i<imageResults.length; i++){
+                var gifDiv = $("<div id='returns'>");
+                var rating = imageResults[i].rating;
+                var ratingP = $("<p>").text("Rating: " + rating);
+                // console.log(ratingP);
+                var giph = $("<img>");
+                var stillGiph = imageResults[i].images.fixed_width_small_still.url;
+                giph.attr("src", stillGiph);  //Does the attribute need two arguments? Can I pass anim/still giphs in if statements separately? Does if statements for movement need to be a separate function?
+                
+                //empty returns div prior to appending new information
+                // $("#topics", "#returns").empty();
+                gifDiv.append(giph, ratingP);
+                $("#returns").prepend(gifDiv);
+            };
+        });
+    };
+    
+    // // 2. Add buttons for new search queries 
+    //     $("#searches").on("click", function(event){
+    //         event.preventDefault();
+    //         $("#returns", "#topics").empty();
+    //         var inputNew = $("#topics").val().trim();
+    //         // pass the new searches into the default buttons function
+    //         defaultButtons(inputNew);
+    //     });
+    
+    function newButtons(){
+        $("#searches").on("click", function(){
+            for (i=0; i< newSearch.length; i++){
+            var newSearch = $("<button>");
+            newSearch.text($("#topics").val().trim());
+            $("#empty-buttons-div").append(newSearch);
+            };
+        });
+    };
 
-            //append rating and image to gifdiv
-            gifDiv.append(stillGiph);
-            gifDiv.append(ratingP);
+    $("#default").on("click", defaultButtons);
+    // $("#searches").on("click", newButtons);
 
-            $("#returns").append(gifDiv); 
+        // function animate() {
+        //     //when giph is clicked on change state to animate   
+        //     var animGiph = imageResults[i].images.fixed_width_small.url;
+        //     var stillGiph = imageResults[i].images.fixed_width_small_still.url;
+        // if (giph == stillGiph) {
+        //             $(this).attr('src', $(this).attr(animGiph));
+        //                         // ^^target src attr (first argument), replace it with  data-animate attr
+        //             $(this).attr('data-state', animGiph);
+        //                         // ^^changing the data-state attr to animate
+        //         }else{
+        //             $(this).attr('src', $(this).attr(stillGiph));
+        //             $(this).attr('data-state', stillGiph);   
+        // } 
+        // };
 
-            // if stillGiph is clicked, animate it
-            // if (stillGiph ==
-        }
+})
         // $("#returns").empty();
         
         // 1.)

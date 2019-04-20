@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    //empty array for new searches
+    var searchBox = [];
+
+    $("button").on("click", defaultButtons);
    
     function defaultButtons(){
         var sharkMovie = $(this).attr("data-movie");
@@ -19,15 +23,37 @@ $(document).ready(function(){
                 var ratingP = $("<p>").text("Rating: " + rating);
                 // console.log(ratingP);
                 var giph = $("<img>");
+                //variables related to still and animated:
                 var animGiph = imageResults[i].images.fixed_width_small.url;
-                var stillGiph = imageResults[i].images.fixed_width_small_still.url;
-                giph.attr("src", animGiph);  //Does the attribute need two arguments? Can I pass anim/still giphs in if statements separately? Does if statements for movement need to be a separate function?
-                gifDiv.append(giph);
+                var stillGiph = imageResults[i].images.fixed_width_small_still.url; 
+                // add attrib to giph img for still and anim images
+                giph.attr("src", stillGiph);
+                giph.attr("src", animGiph);
+                // append rating and images to dynam. created gifDiv
                 gifDiv.append(ratingP);
-                $("#returns").append(gifDiv);
+                gifDiv.append(giph);
+                $("#returns").prepend(gifDiv);
             };
         });
     };
+});
 
-    $("button").on("click", defaultButtons);
-})
+// create a function with an event handler that changes play/pauses gif on click of img
+$(document).on(click, giph, function(){
+    //use excercise pausing-gifs 06-3-15
+
+});
+
+function newButtons(){
+    //when searches button is clicked
+    $("#searches").on("click", function(){
+        //loop through the inputed value
+        for (i=0; i< searchBox.length; i++){
+        //dynamically create a button for the inputed value to be placed in
+        var newSearch = $("<button>");
+        newSearch.text(searchBox[i]);
+        $("#empty-buttons-div").append(newSearch);
+        };
+    });
+};
+

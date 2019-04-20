@@ -23,12 +23,14 @@ form {
 }
 
 input {
-    height: 18px;
+    height: 30px;
     width: 200px;
 
 }
 
-button {
+#topics-button {
+    margin-left: 20px;
+    margin-bottom: 10px;
     border-radius: 50%;
 }
 
