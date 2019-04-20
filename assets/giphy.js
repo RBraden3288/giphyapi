@@ -27,8 +27,8 @@ $(document).ready(function(){
                 var animGiph = imageResults[i].images.fixed_width_small.url;
                 var stillGiph = imageResults[i].images.fixed_width_small_still.url; 
                 // add attrib to giph img for still and anim images
-                giph.attr("src", stillGiph);
-                giph.attr("src", animGiph);
+                giph.attr("data-still", stillGiph); //this is the default image when page loads
+                giph.attr("data-anim", animGiph);
                 // append rating and images to dynam. created gifDiv
                 gifDiv.append(ratingP);
                 gifDiv.append(giph);
@@ -41,6 +41,10 @@ $(document).ready(function(){
 // create a function with an event handler that changes play/pauses gif on click of img
 $(document).on(click, giph, function(){
     //use excercise pausing-gifs 06-3-15
+    //or https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_html_attr_set
+    var state = $(this).attr("data-still");
+
+    if (state == data)
 
 });
 
