@@ -6,9 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giphy API</title>
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
-    
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="assets/images/giphy-1.gif" id="sharkgif">
+                <h1>GIPH ME SHARK MOVIES!</h1>
+            </div>
+            <div class="col">
+                <form>
+                    Topics&colon; Shark Movies!<br>
+                    <input type="text" id="topics">
+                    <button id="searches">Search!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="topics-buttons">
+        <button class="default" data-movie="movie jaws shark" >Jaws</button>
+        <button class="default" data-movie="movie deep blue sea shark">Deep Blue Sea</button>
+        <button class="default" data-movie="finding nemo shark">Finding Nemo</button>
+    </div>
+
+    <div id="empty-buttons-div">
+        <!-- new buttons here -->
+    </div>
+
+    <div id="returns">
+
+    </div>
+    <!-- JQUERY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="assets/giphy.js"></script>
 </body>
 </html>
