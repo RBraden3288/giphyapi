@@ -38,18 +38,18 @@ $(document).ready(function(){
 });
 
 // create a function with an event handler that changes play/pauses gif on click of img
-$(document).on("click", "img", function(){
+$("img").on("click", function(){
     //use excercise pausing-gifs 06-3-15
     //or https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_html_attr_set
     var state = $(this).attr("src");
         if (state == stillGiph) {
-                    $(this).attr('src', $(this).attr(animGiph));
+                    $(this).attr('src', $(this).data("anim"));
                                 // ^^target src attr (first argument), replace it with  data-animate attr
-                    $(this).attr('data-state', animGiph);
+                    $(this).attr('data-state', "anim");
                                 // ^^changing the data-state attr to animate
                 }else{
-                    $(this).attr('src', $(this).attr(stillGiph));
-                    $(this).attr('data-state', stillGiph); 
+                    $(this).attr('src', $(this).attr("src"));
+                    $(this).attr('data-state', "src"); 
     };
 });
 
