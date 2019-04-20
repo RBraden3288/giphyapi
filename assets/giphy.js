@@ -39,7 +39,7 @@ $(document).ready(function(){
 });
 
 // create a function with an event handler that changes play/pauses gif on click of img
-$(document).on(click, giph, function(){
+$(document).on("click", giph, function(){
     //use excercise pausing-gifs 06-3-15
     //or https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_html_attr_set
     var state = $(this).attr("data-still");
